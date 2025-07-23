@@ -26,7 +26,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-muted/20">
+    <section id="contact" className="py-20 px-4 bg-muted/20">
       <div className="container mx-auto">
         <div className="animate-fade-in-up">
           <h2 className="text-4xl font-bold mb-8 text-center">

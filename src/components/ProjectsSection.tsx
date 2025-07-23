@@ -9,6 +9,7 @@ const projects = [
     description: 'Advanced satellite monitoring system using Google Earth Engine and Swin Transformer for real-time forest encroachment detection and analysis.',
     technologies: ['Google Earth Engine', 'Swin Transformer', 'Python', 'Computer Vision', 'Remote Sensing'],
     highlights: ['Real-time monitoring', 'AI-powered detection', 'Satellite imagery analysis'],
+    demoVideo: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     githubUrl: '#',
     liveUrl: '#'
   },
@@ -17,6 +18,7 @@ const projects = [
     description: 'Self-supervised learning approach for wheat disease classification using VGG16, ResNet50, YOLO, and positional attention mechanisms.',
     technologies: ['VGG16', 'ResNet50', 'YOLO', 'Positional Attention', 'TensorFlow', 'Keras'],
     highlights: ['Self-supervised learning', 'Multi-model ensemble', 'High accuracy detection'],
+    demoVideo: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     githubUrl: '#',
     liveUrl: '#'
   },
@@ -25,6 +27,7 @@ const projects = [
     description: 'End-to-end AWS infrastructure automation using Terraform, with CI/CD pipelines and monitoring solutions.',
     technologies: ['Terraform', 'AWS', 'GitHub Actions', 'Docker', 'Prometheus', 'Grafana'],
     highlights: ['Infrastructure as Code', 'Automated deployments', 'Comprehensive monitoring'],
+    demoVideo: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     githubUrl: '#',
     liveUrl: '#'
   }
@@ -32,7 +35,7 @@ const projects = [
 
 export const ProjectsSection = () => {
   return (
-    <section className="py-20 px-4 bg-muted/20">
+    <section id="projects" className="py-20 px-4 bg-muted/20">
       <div className="container mx-auto">
         <div className="animate-fade-in-up">
           <h2 className="text-4xl font-bold mb-8 text-center">
@@ -40,54 +43,73 @@ export const ProjectsSection = () => {
             <div className="w-24 h-1 bg-primary mx-auto mt-4 rounded"></div>
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="space-y-12">
             {projects.map((project, index) => (
-              <Card key={index} className="bg-card-gradient border-border hover:shadow-glow transition-all group h-full flex flex-col">
-                <CardHeader>
-                  <CardTitle className="text-xl text-primary group-hover:text-accent transition-colors">
-                    {project.title}
-                  </CardTitle>
-                </CardHeader>
-                
-                <CardContent className="flex-grow flex flex-col">
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  <div className="mb-4">
-                    <h4 className="font-semibold mb-2 text-sm text-foreground">Key Highlights:</h4>
-                    <ul className="space-y-1">
-                      {project.highlights.map((highlight, hIndex) => (
-                        <li key={hIndex} className="text-sm text-muted-foreground flex items-center">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2 flex-shrink-0"></div>
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
+              <Card key={index} className="bg-card-gradient border-border hover:shadow-glow transition-all group overflow-hidden">
+                <div className={`grid lg:grid-cols-2 gap-6 ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
+                  {/* Demo Video */}
+                  <div className={`relative aspect-video bg-muted rounded-lg overflow-hidden ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                    <iframe
+                      src={project.demoVideo}
+                      title={`${project.title} Demo`}
+                      className="w-full h-full rounded-lg"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
                   </div>
                   
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-2 text-sm text-foreground">Technologies:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-xs border-primary/30 text-primary">
-                          {tech}
-                        </Badge>
-                      ))}
+                  {/* Project Details */}
+                  <div className={`p-6 flex flex-col justify-center ${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
+                    <CardHeader className="p-0 mb-4">
+                      <CardTitle className="text-2xl text-primary group-hover:text-accent transition-colors">
+                        {project.title}
+                      </CardTitle>
+                    </CardHeader>
+                    
+                    <p className="text-muted-foreground mb-6 leading-relaxed">
+                      {project.description}
+                    </p>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-semibold mb-3 text-foreground">Key Highlights:</h4>
+                      <ul className="space-y-2">
+                        {project.highlights.map((highlight, hIndex) => (
+                          <li key={hIndex} className="text-sm text-muted-foreground flex items-center">
+                            <div className="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></div>
+                            {highlight}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-semibold mb-3 text-foreground">Technologies Used:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech) => (
+                          <Badge key={tech} variant="outline" className="border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="flex space-x-3">
+                      <Button variant="outline" className="group-hover:border-primary transition-all hover:scale-105">
+                        <Github className="mr-2 h-4 w-4" />
+                        View Code
+                      </Button>
+                      <Button variant="outline" className="group-hover:border-primary transition-all hover:scale-105">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Live Demo
+                      </Button>
+                      <Button variant="outline" className="group-hover:border-primary transition-all hover:scale-105">
+                        <Eye className="mr-2 h-4 w-4" />
+                        Watch Demo
+                      </Button>
                     </div>
                   </div>
-                  
-                  <div className="mt-auto flex space-x-2">
-                    <Button variant="outline" size="sm" className="flex-1 group-hover:border-primary transition-colors">
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </Button>
-                    <Button variant="outline" size="sm" className="flex-1 group-hover:border-primary transition-colors">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Live
-                    </Button>
-                  </div>
-                </CardContent>
+                </div>
               </Card>
             ))}
           </div>
