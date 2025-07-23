@@ -65,7 +65,7 @@ export const HeroSection = () => {
       <div className="container mx-auto px-4 text-center z-10">
         <div className="animate-fade-in-up">
           <blockquote className="text-2xl md:text-3xl italic text-muted-foreground mb-8 max-w-4xl mx-auto">
-            "I'm Spiderman... because I build webs like this."
+            "I automate things so I can nap responsibly."
           </blockquote>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 bg-hero-gradient bg-clip-text text-transparent">
