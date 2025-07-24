@@ -1,4 +1,5 @@
 import { Navbar } from '@/components/Navbar';
+import DevOpsBackground from '@/components/DevOpsBackground';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
 import { SkillsSection } from '@/components/SkillsSection';
@@ -10,16 +11,19 @@ import { ContactSection } from '@/components/ContactSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background cloud-pattern devops-grid">
-      <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ExperienceSection />
-      <ProjectsSection />
-      <CertificationsSection />
-      <MessageSection />
-      <ContactSection />
+    <div className="min-h-screen bg-background devops-background relative">
+      <DevOpsBackground />
+      <div className="relative z-10">
+        <Navbar />
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <CertificationsSection />
+        <MessageSection />
+        <ContactSection />
+      </div>
     </div>
   );
 };
