@@ -160,59 +160,92 @@ All colors MUST be HSL.
     z-index: -1;
   }
   
-  .floating-cloud {
+  .realistic-cloud {
+    position: relative;
+    animation: cloudDrift 20s ease-in-out infinite;
+  }
+  
+  .cloud-part {
     position: absolute;
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--web-cyan) / 0.08));
-    border-radius: 50px;
-    animation: floatCloud 15s ease-in-out infinite;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--web-cyan) / 0.12));
+    border-radius: 50%;
+    backdrop-filter: blur(1px);
   }
   
-  .floating-cloud::before,
-  .floating-cloud::after {
-    content: '';
+  .cloud-part-1 {
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 10%;
+  }
+  
+  .cloud-part-2 {
+    width: 70%;
+    height: 50%;
+    top: 30%;
+    left: 20%;
+  }
+  
+  .cloud-part-3 {
+    width: 50%;
+    height: 70%;
+    top: 10%;
+    left: 30%;
+  }
+  
+  .cloud-part-4 {
+    width: 40%;
+    height: 40%;
+    top: 40%;
+    left: 50%;
+  }
+  
+  .cloud-part-5 {
+    width: 35%;
+    height: 45%;
+    top: 25%;
+    left: 60%;
+  }
+  
+  .local-machine {
+    animation: pulse 3s ease-in-out infinite;
+  }
+  
+  .data-flow-line {
     position: absolute;
-    background: inherit;
-    border-radius: 50px;
+    bottom: 80px;
+    left: 120px;
+    width: 300px;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--primary)), transparent);
+    animation: dataUpload 4s ease-in-out infinite;
+    transform-origin: left;
   }
   
-  .floating-cloud::before {
-    width: 50px;
-    height: 50px;
-    top: -25px;
-    left: 10px;
-  }
-  
-  .floating-cloud::after {
-    width: 60px;
-    height: 60px;
-    top: -35px;
-    right: 15px;
-  }
-  
-  .network-line {
+  .data-packet {
     position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
-    animation: dataFlow 3s ease-in-out infinite;
-  }
-  
-  .tech-node {
-    position: absolute;
-    width: 8px;
-    height: 8px;
+    bottom: 78px;
+    left: 120px;
+    width: 6px;
+    height: 6px;
     background: hsl(var(--primary));
     border-radius: 50%;
-    box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
-    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 8px hsl(var(--primary) / 0.6);
+    animation: packetTravel 4s ease-in-out infinite;
+  }
+  
+  .cloud-service-label {
+    animation: labelFloat 6s ease-in-out infinite;
   }
   
   .circuit-pattern {
     background-image: 
-      linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px),
-      linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
-      radial-gradient(circle at 50% 50%, hsl(var(--web-cyan) / 0.03) 2px, transparent 2px);
-    background-size: 60px 60px, 60px 60px, 120px 120px;
-    animation: circuitMove 20s linear infinite;
+      linear-gradient(90deg, hsl(var(--primary) / 0.06) 1px, transparent 1px),
+      linear-gradient(hsl(var(--primary) / 0.06) 1px, transparent 1px),
+      radial-gradient(circle at 25% 25%, hsl(var(--web-cyan) / 0.04) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, hsl(var(--tech-purple) / 0.04) 1px, transparent 1px);
+    background-size: 50px 50px, 50px 50px, 100px 100px, 150px 150px;
+    animation: circuitFlow 25s linear infinite;
   }
   
   .particle {
@@ -293,45 +326,78 @@ All colors MUST be HSL.
   }
 }
 
-@keyframes floatCloud {
+@keyframes cloudDrift {
   0%, 100% { 
     transform: translateX(0) translateY(0) scale(1);
-    opacity: 0.6;
+    opacity: 0.7;
   }
   25% { 
-    transform: translateX(100px) translateY(-20px) scale(1.1);
-    opacity: 0.8;
+    transform: translateX(20px) translateY(-10px) scale(1.05);
+    opacity: 0.9;
   }
   50% { 
-    transform: translateX(200px) translateY(-40px) scale(0.9);
+    transform: translateX(40px) translateY(-5px) scale(0.95);
     opacity: 1;
   }
   75% { 
-    transform: translateX(150px) translateY(-10px) scale(1.05);
-    opacity: 0.7;
+    transform: translateX(30px) translateY(-15px) scale(1.02);
+    opacity: 0.8;
   }
 }
 
-@keyframes dataFlow {
+@keyframes dataUpload {
   0% { 
-    transform: translateX(-100%);
+    transform: scaleX(0);
     opacity: 0;
   }
-  50% { 
+  30% { 
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  70% { 
+    transform: scaleX(1);
     opacity: 1;
   }
   100% { 
-    transform: translateX(100vw);
+    transform: scaleX(0);
     opacity: 0;
   }
 }
 
-@keyframes circuitMove {
+@keyframes packetTravel {
   0% { 
-    background-position: 0 0, 0 0, 0 0;
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  10% { 
+    opacity: 1;
+  }
+  90% { 
+    opacity: 1;
   }
   100% { 
-    background-position: 60px 60px, 60px 60px, 120px 120px;
+    transform: translateX(300px) translateY(-150px);
+    opacity: 0;
+  }
+}
+
+@keyframes labelFloat {
+  0%, 100% { 
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+@keyframes circuitFlow {
+  0% { 
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  100% { 
+    background-position: 50px 50px, 50px 50px, 100px 100px, 150px 150px;
   }
 }
 
@@ -341,7 +407,7 @@ All colors MUST be HSL.
     opacity: 1;
   }
   50% { 
-    transform: scale(1.5);
-    opacity: 0.7;
+    transform: scale(1.1);
+    opacity: 0.8;
   }
 }
